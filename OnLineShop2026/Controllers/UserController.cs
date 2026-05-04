@@ -7,9 +7,17 @@ namespace OnLineShop2026.Controllers
 {
     public class UserController : Controller
     {
-		public IActionResult Index()
+		IUserRepository userRepository;
+
+		public UserController(IUserRepository userRep)
 		{
-			User user = new User("Элина", "Кокоева", "elina@mail.ru");
+			this.userRepository = userRep;
+		}
+
+		public IActionResult Index(Guid id)
+		{
+			var user = userRepository.TryGetById(id);
+			if (user == null) return null;
 			return View(user);
 		}
 	}
