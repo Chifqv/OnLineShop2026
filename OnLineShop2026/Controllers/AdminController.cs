@@ -14,6 +14,11 @@ namespace OnLineShop2026.Controllers
 		}
 		public IActionResult Index()
 		{
+			return View();
+		}
+
+		public IActionResult UsersCatalog()
+		{
 			var users = usersRepository.GetAll();
 
 			return View(users);
