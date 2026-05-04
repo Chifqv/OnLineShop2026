@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\images\basePhoto.jpg">
+    <Content Update="wwwroot\images\basePhoto.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\images\img_cake.jpg">

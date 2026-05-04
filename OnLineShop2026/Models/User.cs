@@ -11,7 +11,7 @@ namespace OnLineShop2026.Models
 		public string Email { get; set; }
 		public string PhotoPath { get; set; }
 
-		public User(string name,string sername, string email, string photoPath = "/images/basePhoto.jpg")
+		public User(string name,string sername, string email, string photoPath = "/images/basePhoto.png")
 		{
 			Id = Guid.NewGuid();
 			Name = name;
