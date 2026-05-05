@@ -4,11 +4,8 @@ namespace OnLineShop2026.Data
 {
     public class CartRepositoryInMemory : ICartRepository
     {
-        private static List<Cart> carts = new List<Cart>()
-        {
-            new Cart()
-        };
-
+        private static List<Cart> carts = new List<Cart>();
+        
         public void Add(Product product, int idUser)
         {
             var cart = carts.FirstOrDefault(x => x.UserId == idUser);
@@ -36,8 +33,22 @@ namespace OnLineShop2026.Data
         public void Increment(Product product, int idUser)
         {
             Cart cart = carts.FirstOrDefault(x => x.UserId == idUser);
-            CartItem item = cart.CartItems.FirstOrDefault(x => x.Product == product);
-            item.Amount += 1;
+            CartItem item = cart.CartItems.FirstOrDefault(x => x.Product.Id == product.Id);
+            if(item != null)
+                item.Amount += 1;
+        }
+
+        public void Decrement(Product product, int idUser)
+        {
+            Cart cart = carts.FirstOrDefault(x => x.UserId == idUser);
+            CartItem item = cart.CartItems.FirstOrDefault(x => x.Product.Id == product.Id);
+            if (item != null)
+                if (item.Amount > 1)
+                    item.Amount -= 1;
+                else
+                { 
+                    cart.CartItems.Remove(item);
+                }
         }
 
         public Cart? TryGetByUserId(int userId) 

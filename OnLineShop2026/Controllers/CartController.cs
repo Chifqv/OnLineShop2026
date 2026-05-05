@@ -29,10 +29,17 @@ namespace OnLineShop2026.Controllers
             cartRepository.Add(product, idUser);
             return RedirectToAction("Index"); 
         }
-        public IActionResult Increment(Guid idProduct)
+        public IActionResult Increment(Guid id)
         {
-            var product = productRepository.TryGetById(idProduct);
+            var product = productRepository.TryGetById(id);
             cartRepository.Increment(product, idUser);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Decrement(Guid id)
+        {
+            var product = productRepository.TryGetById(id);
+            cartRepository.Decrement(product, idUser);
             return RedirectToAction("Index");
         }
     }

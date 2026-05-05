@@ -5,7 +5,12 @@
 
 <div class="text-center">
     <h1 class="display-4">Корзина</h1>
-
+    @if (@Model == null || Model.CartItems.Count == 0)
+    {
+        <h3>У вас еще нет товаров</h3>
+    }
+    else
+    {
     <div>
         Полная стоимость товаров - <b>@Model.Cost</b>
     </div>
@@ -29,9 +34,14 @@
                         asp-action="Increment" 
                         asp-route-id="@item.Product.Id" 
                         role="button">+</a>
-                        <a class="btn btn-outline-primary" href="#" role="button">-</a></td>
+                        <a class="btn btn-outline-primary" 
+                        role="button"
+                        asp-action="Decrement" 
+                        asp-route-id="@item.Product.Id"
+                        >-</a></td>
                 </tr>
             }
         </tbody>
     </table>
+    }
 </div>
